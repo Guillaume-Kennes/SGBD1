@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 namespace SGBD.Services {
     public class StudentsService : IStudentsService {
 
-        private IRepo _repo;
+        private IStudentRepo _repo;
         private readonly ILogger<StudentsService> _logger;
 
-        public StudentsService(ILogger<StudentsService> logger, IRepo repo) {
+        public StudentsService(ILogger<StudentsService> logger, IStudentRepo repo) {
             _logger = logger;
             _repo = repo;
         }
@@ -27,6 +27,7 @@ namespace SGBD.Services {
 
         public void Add(Student student) {
             CheckMatricule(student.Matricule);
+            CheckFirstName(student.FirstName);
             _repo.Add(student);
             
         }
@@ -37,7 +38,18 @@ namespace SGBD.Services {
 
         public void Update(Student student) {
             CheckMatricule(student.Matricule);
+            CheckFirstName(student.FirstName);
             _repo.Update(student);
+        }
+
+        public List<Student> FindStudentByLastname(string lastName) {
+            if (string.IsNullOrEmpty(lastName)) {
+                throw new ArgumentException("Last name cannot be null or empty.");
+            }
+            if (lastName.Length < 2 || lastName.Length > 50) {
+                throw new ArgumentException("Last name must be between 2 and 50 characters long.");
+            }
+            return _repo.FindStudentByLastname(lastName);
         }
 
         private void CheckMatricule(string matricule) {
@@ -52,6 +64,16 @@ namespace SGBD.Services {
                 throw new ArgumentException("Matricule must begin with HE or PS");
             }
         }
+
+        private void CheckFirstName(string firstName) {
+            if (string.IsNullOrEmpty(firstName)) {
+                throw new ArgumentException("First name cannot be null or empty.");
+            }
+            if (firstName.Length < 2 || firstName.Length > 50) {
+                throw new ArgumentException("First name must be between 2 and 50 characters long.");
+            }
+        }
+
 
     }
 }
