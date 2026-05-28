@@ -73,5 +73,27 @@ namespace SGBD.Repositories {
             }
         }
 
+
+        public void Update(Student student) {
+            string querry = GetFileFromAssembly("Etudiant_update.sql");
+            using (SqlConnection connection = new SqlConnection(connectionString)) {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(querry, connection)) {
+                    command.Parameters.AddWithValue("@Id", student.Id);
+                    command.Parameters.AddWithValue("@Nom", student.LastName);
+                    command.Parameters.AddWithValue("@Prenom", student.FirstName);
+                    command.Parameters.AddWithValue("@Matricule", student.Matricule);
+                    command.Parameters.AddWithValue("@Email", student.Email);
+                    int rowsAffected = command.ExecuteNonQuery();
+                    if (rowsAffected > 0) {
+                        _logger.LogInformation("Student updated successfully.");
+                    } else {
+                        _logger.LogWarning("No rows were updated.");
+                    }
+                }
+
+            }
+        }
+
     }
 }

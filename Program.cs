@@ -18,7 +18,7 @@ namespace SGBD {
             var studentsService = serviceProvider.GetRequiredService<IStudentsService>();
 
             //int choice = int.Parse(args[0]);
-            int choice = 2;
+            int choice = 3;
 
             try {
 
@@ -29,6 +29,10 @@ namespace SGBD {
                     case 2: 
                         Delete(studentsService);
                         break;
+                    case 3:
+                        Update(studentsService);
+                        break;
+
 
                 }
 
@@ -50,7 +54,7 @@ namespace SGBD {
                 Matricule = "HE01",
                 FirstName = "John",
                 LastName = "D",
-                Email = "johndoe@gmail.com"
+                Email = "johnd@gmail.com"
             };
 
             studentsService.Add(newStudent);
@@ -59,6 +63,19 @@ namespace SGBD {
         private static void Delete(IStudentsService studentsService) {
             studentsService.Delete(11);
         }
+
+        private static void Update(IStudentsService studentsService) {
+            Student updatedStudent = new Student {
+                Id = 12,
+                Matricule = "HE01",
+                FirstName = "John",
+                LastName = "Dafiduck",
+                Email = "johndoe@gmail.com"
+            };
+
+            studentsService.Update(updatedStudent);
+        }
+
 
         private static ServiceProvider CreateService() {
             var services = new ServiceCollection();
