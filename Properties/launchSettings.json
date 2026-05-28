@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "SGBD": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}
