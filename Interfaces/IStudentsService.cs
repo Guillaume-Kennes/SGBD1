@@ -11,7 +11,7 @@ namespace SGBD.Interfaces {
         List<Student> GetAll();
 
         void Add(Student student);
-void Remove(Student student);
+
         void Delete(int id);
     }
 }

@@ -30,5 +30,8 @@ namespace SGBD.Services {
             
         }
 
+        public void Delete(int id) {
+            _repo.Delete(id);
+        }
     }
 }
