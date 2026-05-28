@@ -18,7 +18,7 @@ namespace SGBD {
             var studentsService = serviceProvider.GetRequiredService<IStudentsService>();
 
             //int choice = int.Parse(args[0]);
-            int choice = 1;
+            int choice = 2;
 
             try {
 
@@ -57,7 +57,7 @@ namespace SGBD {
         }
 
         private static void Delete(IStudentsService studentsService) {
-            studentsService.Delete(1);
+            studentsService.Delete(11);
         }
 
         private static ServiceProvider CreateService() {
