@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".gitignore" />
+  </Folder>
+  <Project Path="SGBD/SGBD.csproj" />
+  <Project Path="Tests/Tests.csproj" Id="2d348ee3-0f8c-4f23-8e9e-2ed342210067" />
+</Solution>
