@@ -18,7 +18,7 @@ namespace SGBD {
             var studentsService = serviceProvider.GetRequiredService<IStudentsService>();
 
             //int choice = int.Parse(args[0]);
-            int choice = 2;
+            int choice = 1;
 
             try {
 
@@ -47,10 +47,10 @@ namespace SGBD {
 
         private static void Add(IStudentsService studentsService) {
             Student newStudent = new Student {
-                Matricule = "123456",
+                Matricule = "HE01",
                 FirstName = "John",
-                LastName = "Doe",
-                Email = "john.doe@gmail.com"
+                LastName = "D",
+                Email = "johndoe@gmail.com"
             };
 
             studentsService.Add(newStudent);

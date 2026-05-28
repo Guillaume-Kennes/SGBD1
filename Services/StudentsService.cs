@@ -26,6 +26,7 @@ namespace SGBD.Services {
         }
 
         public void Add(Student student) {
+            CheckMatricule(student.Matricule);
             _repo.Add(student);
             
         }
@@ -33,5 +34,19 @@ namespace SGBD.Services {
         public void Delete(int id) {
             _repo.Delete(id);
         }
+
+        private void CheckMatricule(string matricule) {
+            if (string.IsNullOrEmpty(matricule)) {
+                throw new ArgumentException("Matricule cannot be null or empty.");
+            }
+            if (matricule.Length != 4) {
+                throw new ArgumentException("Matricule must be 4 characters long.");
+            }
+            string prefix = matricule.Substring(0, 2);
+            if (prefix != "HE" && prefix != "PS") {
+                throw new ArgumentException("Matricule must begin with HE or PS");
+            }
+        }
+
     }
 }
