@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using SGBD.Models;
 
 namespace SGBD.Interfaces {
-    internal interface IStudentsService {
+    public interface IStudentsService {
 
         List<Student> GetAll();
 
