@@ -22,30 +22,14 @@ namespace SGBD.Repositories {
 
         public List<Student> GetAll() {
 
-            List<Student> listStudents = new List<Student>();
+            List<Student> list = new List<Student>();
 
             using (SqlConnection connection = new SqlConnection(connectionString)) {
                 connection.Open();
 
             }
 
-
-            Student student1 = new Student();
-            student1.Matricule = "1234";
-            student1.FirstName = "name";
-            student1.LastName = "lastname";
-            student1.Email = "email@gmail.com";
-
-            Student student2 = new Student();
-            student2.Matricule = "5678";
-            student2.FirstName = "hell";
-            student2.LastName = "O";
-            student2.Email = "abc@gmail.com";
-
-            listStudents.Add(student1);
-            listStudents.Add(student2);
-
-            return listStudents;
+            return list;
         }
 
 
@@ -67,6 +51,23 @@ namespace SGBD.Repositories {
                     }
                 }
 
+
+            }
+        }
+
+        public void Delete(int id) {
+            using (SqlConnection connection = new SqlConnection(connectionString)) {
+                connection.Open();
+                string querry = "delete from Etudiant where ETU_ID = @Id";
+                using (SqlCommand command = new SqlCommand(querry, connection)) {
+                    command.Parameters.AddWithValue("@Id", id);
+                    int rowsAffected = command.ExecuteNonQuery();
+                    if (rowsAffected > 0) {
+                        _logger.LogInformation("Student deleted successfully.");
+                    } else {
+                        _logger.LogWarning("No rows were deleted.");
+                    }
+                }
 
             }
 
