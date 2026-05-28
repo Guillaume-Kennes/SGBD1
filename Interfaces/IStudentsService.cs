@@ -16,5 +16,7 @@ namespace SGBD.Interfaces {
 
         void Update(Student student);
 
+        List<Student> FindStudentByLastname(string lastName);
+
     }
 }

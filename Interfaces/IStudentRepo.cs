@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using SGBD.Models;
 
 namespace SGBD.Interfaces {
-    public interface IRepo {
+    public interface IStudentRepo {
         List<Student> GetAll();
 
         void Add(Student sttudent);
@@ -14,5 +14,7 @@ namespace SGBD.Interfaces {
         void Delete(int id);
 
         void Update(Student student);
+
+        List<Student> FindStudentByLastname(string lastName);
     }
 }
