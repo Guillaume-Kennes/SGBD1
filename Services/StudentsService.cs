@@ -35,6 +35,11 @@ namespace SGBD.Services {
             _repo.Delete(id);
         }
 
+        public void Update(Student student) {
+            CheckMatricule(student.Matricule);
+            _repo.Update(student);
+        }
+
         private void CheckMatricule(string matricule) {
             if (string.IsNullOrEmpty(matricule)) {
                 throw new ArgumentException("Matricule cannot be null or empty.");

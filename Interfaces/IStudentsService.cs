@@ -14,5 +14,7 @@ namespace SGBD.Interfaces {
 
         void Delete(int id);
 
+        void Update(Student student);
+
     }
 }
