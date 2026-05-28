@@ -8,9 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SGBD.Interfaces;
+using System.Reflection;
 
 namespace SGBD.Repositories {
-    public class Repo : IRepo {
+    public class Repo : BaseRepo, IRepo {
 
 
         private readonly string connectionString = @"Server=MSI\MSSQL; DataBase=SGBD; User ID=sa; Password=GuillaumeK15_; TrustServerCertificate=True;";
@@ -36,7 +37,7 @@ namespace SGBD.Repositories {
         public void Add(Student student) {
             using (SqlConnection connection = new SqlConnection(connectionString)) {
                 connection.Open();
-                string querry = "insert into Etudiant(ETU_NOM, ETU_PRENOM, ETU_MATRICULE, ETU_EMAIL) values (@Nom, @Prenom, @Matricule, @Email)";
+                string querry = GetFileFromAssembly("Etudiant_insert.sql");
 
                 using (SqlCommand command = new SqlCommand(querry, connection)) {
                     command.Parameters.AddWithValue("@Nom", student.LastName);
@@ -56,9 +57,9 @@ namespace SGBD.Repositories {
         }
 
         public void Delete(int id) {
+            string querry = GetFileFromAssembly("Etudiant_delete.sql");
             using (SqlConnection connection = new SqlConnection(connectionString)) {
                 connection.Open();
-                string querry = "delete from Etudiant where ETU_ID = @Id";
                 using (SqlCommand command = new SqlCommand(querry, connection)) {
                     command.Parameters.AddWithValue("@Id", id);
                     int rowsAffected = command.ExecuteNonQuery();
@@ -70,7 +71,7 @@ namespace SGBD.Repositories {
                 }
 
             }
-
         }
+
     }
 }

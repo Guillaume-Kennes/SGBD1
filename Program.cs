@@ -47,17 +47,17 @@ namespace SGBD {
 
         private static void Add(IStudentsService studentsService) {
             Student newStudent = new Student {
-                Matricule = "123456",
+                Matricule = "HE01",
                 FirstName = "John",
-                LastName = "Doe",
-                Email = "john.doe@gmail.com"
+                LastName = "D",
+                Email = "johndoe@gmail.com"
             };
 
             studentsService.Add(newStudent);
         }
 
         private static void Delete(IStudentsService studentsService) {
-            studentsService.Delete(1);
+            studentsService.Delete(11);
         }
 
         private static ServiceProvider CreateService() {

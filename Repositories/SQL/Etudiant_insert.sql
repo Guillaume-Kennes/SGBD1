@@ -1,0 +1,1 @@
+﻿insert into Etudiant(ETU_NOM, ETU_PRENOM, ETU_MATRICULE, ETU_EMAIL) values (@Nom, @Prenom, @Matricule, @Email)
