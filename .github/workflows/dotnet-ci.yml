@@ -28,9 +28,10 @@ jobs:
             --results-directory ./TestResults
 
       - name: Publish test report to Checks
-        uses: actions/upload-test-report@v2
+        uses: dorny/test-reporter@v1
         with:
-          path: TestResults/TestResults.trx
+          name: Tests
+          path: TestResults/**/*.trx
 
       - name: Upload test artifacts
         uses: actions/upload-artifact@v4
@@ -43,4 +44,4 @@ jobs:
         with:
           files: TestResults/**/coverage.cobertura.xml
         env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }} # required for private repos
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }} # optional for public repos
