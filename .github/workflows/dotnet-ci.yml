@@ -3,12 +3,13 @@ name: .NET 9 CI
 on: [push, pull_request]
 
 jobs:
-  build:
+  ci:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
-        with: { dotnet-version: '9.0.x' }
+        with:
+          dotnet-version: '9.0.x'
       - run: dotnet restore
       - run: dotnet build --configuration Release --no-restore
       - run: dotnet test --configuration Release --no-build --verbosity normal
