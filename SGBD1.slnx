@@ -3,6 +3,10 @@
     <File Path=".github/workflows/dotnet-ci.yml" />
     <File Path=".gitignore" />
   </Folder>
+  <Project Path="InterfacesDLL/InterfacesDLL.csproj" Id="6a28ce7e-b969-4bcc-937f-cf637ee8eb81" />
+  <Project Path="ModelsDLL/ModelsDLL.csproj" Id="b8c94e85-b9e0-4433-8f32-f4ce92b9ada9" />
+  <Project Path="RepoDLL/RepoDLL.csproj" Id="fdc8af05-fdd8-4dc9-843d-583ae0cb536e" />
+  <Project Path="ServicesDLL/ServicesDLL.csproj" Id="3bda4140-5b11-4b90-80f2-0c3b682d95dc" />
   <Project Path="SGBD/SGBD.csproj" />
   <Project Path="Tests/Tests.csproj" Id="2d348ee3-0f8c-4f23-8e9e-2ed342210067" />
 </Solution>

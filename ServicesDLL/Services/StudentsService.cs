@@ -1,14 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
-using SGBD.Interfaces;
-using SGBD.Models;
-using SGBD.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Interfaces;
+using Models;
+using Repositories;
 
-namespace SGBD.Services {
+namespace Services {
     public class StudentsService : IStudentsService {
 
         private IStudentRepo _repo;

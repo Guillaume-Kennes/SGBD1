@@ -1,11 +1,7 @@
-﻿using Xunit;
-using Moq;
-using Microsoft.Extensions.Logging;
-using SGBD.Services;
-using SGBD.Interfaces;
-using SGBD.Models;
-using System.Collections.Generic;
-using Castle.Core.Logging;
+﻿using Moq;
+using Services;
+using Interfaces;
+using Models;
 using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Tests.Services {

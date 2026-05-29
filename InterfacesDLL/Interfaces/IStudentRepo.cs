@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SGBD.Models;
+﻿using Models;
 
-namespace SGBD.Interfaces {
-    public interface IStudentsService {
-
+namespace Interfaces {
+    public interface IStudentRepo {
         List<Student> GetAll();
 
         void Add(Student student);
@@ -17,6 +11,5 @@ namespace SGBD.Interfaces {
         void Update(Student student);
 
         List<Student> FindStudentByLastname(string lastName);
-
     }
 }
