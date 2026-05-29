@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/Solution Items/">
+    <File Path=".github/workflows/dotnet-ci.yml" />
     <File Path=".gitignore" />
   </Folder>
   <Project Path="SGBD/SGBD.csproj" />
