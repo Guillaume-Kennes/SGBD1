@@ -6,45 +6,29 @@ jobs:
   ci:
     name: Build, test and coverage
     runs-on: ubuntu-latest
+    env:
+      PATH: ${{ env.PATH }}:$HOME/.dotnet/tools
     steps:
       - uses: actions/checkout@v4
-
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.0.x'
-
-      - name: Restore
-        run: dotnet restore
-
-      - name: Build
-        run: dotnet build --configuration Release --no-restore
-
+      - run: dotnet restore
+      - run: dotnet build --configuration Release --no-restore
       - name: Run tests (TRX + coverage)
         run: |
           dotnet test --configuration Release --no-build \
             --logger "trx;LogFileName=TestResults.trx" \
             --collect:"XPlat Code Coverage" \
             --results-directory ./TestResults
-
-      - name: Install ReportGenerator (for HTML coverage)
+      - name: Install ReportGenerator (global)
         run: dotnet tool install --global dotnet-reportgenerator-globaltool --version 5.1.23
-
       - name: Generate HTML coverage report
-        env:
-          PATH: ${{ env.PATH }}:$HOME/.dotnet/tools
-        run: |
-          reportgenerator \
-            -reports:"TestResults/**/coverage.cobertura.xml" \
-            -targetdir:"coverage-report" \
-            -reporttypes:Html
-
-      - name: Upload test results
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-results
-          path: TestResults
-
+        run: reportgenerator \
+          -reports:"TestResults/**/coverage.cobertura.xml" \
+          -targetdir:"coverage-report" \
+          -reporttypes:Html
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
         with:
