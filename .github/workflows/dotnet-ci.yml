@@ -1,4 +1,4 @@
-name: .NET 9 CI
+name: .NET 9 CI - restore / build / test / coverage
 
 on: [push, pull_request]
 
@@ -27,23 +27,20 @@ jobs:
             --collect:"XPlat Code Coverage" \
             --results-directory ./TestResults
 
-      - name: Install ReportGenerator (global)
-        run: dotnet tool install --global dotnet-reportgenerator-globaltool --version 5.1.23
+      - name: Publish test report to Checks
+        uses: actions/upload-test-report@v2
+        with:
+          path: TestResults/TestResults.trx
 
-      - name: Generate HTML coverage report
-        run: $HOME/.dotnet/tools/reportgenerator \
-          -reports:"TestResults/**/coverage.cobertura.xml" \
-          -targetdir:"coverage-report" \
-          -reporttypes:Html
-
-      - name: Upload test results
+      - name: Upload test artifacts
         uses: actions/upload-artifact@v4
         with:
           name: test-results
           path: TestResults
 
-      - name: Upload coverage report
-        uses: actions/upload-artifact@v4
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
         with:
-          name: coverage-report
-          path: coverage-report
+          files: TestResults/**/coverage.cobertura.xml
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }} # required for private repos
