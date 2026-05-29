@@ -32,6 +32,7 @@ jobs:
         with:
           name: Tests
           path: TestResults/**/*.trx
+          reporter: trx
 
       - name: Upload test artifacts
         uses: actions/upload-artifact@v4
