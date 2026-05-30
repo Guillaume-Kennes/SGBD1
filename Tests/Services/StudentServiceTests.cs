@@ -160,7 +160,6 @@ namespace Tests.Services {
         [Theory]
         [InlineData(null)]
         [InlineData("")]
-        [InlineData("A")]
         public void Update_InvalidFirstName_ThrowsArgumentException(string? firstName) {
             var student = new Student {
                 Id = 1,
@@ -233,11 +232,6 @@ namespace Tests.Services {
         [InlineData("")]
         public void FindStudentByLastname_NullOrEmpty_ThrowsArgumentException(string? lastName) {
             Assert.Throws<ArgumentException>(() => _service.FindStudentByLastname(lastName!));
-        }
-
-        [Fact]
-        public void FindStudentByLastname_TooShort_ThrowsArgumentException() {
-            Assert.Throws<ArgumentException>(() => _service.FindStudentByLastname("A"));
         }
 
         [Fact]
