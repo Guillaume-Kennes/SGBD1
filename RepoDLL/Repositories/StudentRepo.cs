@@ -1,16 +1,9 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
-using SGBD.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SGBD.Interfaces;
-using System.Reflection;
+using Models;
+using Interfaces;
 
-namespace SGBD.Repositories {
+namespace Repositories {
     public class StudentRepo : BaseRepo, IStudentRepo {
 
 
