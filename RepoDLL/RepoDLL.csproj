@@ -7,14 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Repositories\SQL\Etudiant_deleteDapper.sql" />
     <EmbeddedResource Include="Repositories\SQL\Etudiant_delete.sql" />
-    <EmbeddedResource Include="Repositories\SQL\Etudiant_Etudiant_findByLastname.sql" />
+    <EmbeddedResource Include="Repositories\SQL\Etudiant_findByLastnameDapper.sql" />
+    <EmbeddedResource Include="Repositories\SQL\Etudiant_findByLastname.sql" />
+    <EmbeddedResource Include="Repositories\SQL\Etudiant_insertDapper.sql" />
     <EmbeddedResource Include="Repositories\SQL\Etudiant_insert.sql" />
+    <EmbeddedResource Include="Repositories\SQL\Etudiant_selectAllDapper.sql" />
     <EmbeddedResource Include="Repositories\SQL\Etudiant_selectAll.sql" />
+    <EmbeddedResource Include="Repositories\SQL\Etudiant_updateDapper.sql" />
     <EmbeddedResource Include="Repositories\SQL\Etudiant_update.sql" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.79" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="7.0.1" />
   </ItemGroup>
 

@@ -17,6 +17,7 @@ namespace Services {
         public List<Student> GetAll() {
             _logger.LogDebug("entering GetAll() in StudentsService");
             List<Student> students = _repo.GetAll();
+            _logger.LogInformation("Fetched {Count} students from database (service).", students.Count);
             return students;
         }
 
@@ -41,8 +42,8 @@ namespace Services {
             if (string.IsNullOrEmpty(lastName)) {
                 throw new ArgumentException("Last name cannot be null or empty.");
             }
-            if (lastName.Length < 2 || lastName.Length > 50) {
-                throw new ArgumentException("Last name must be between 2 and 50 characters long.");
+            if (lastName.Length > 50) {
+                throw new ArgumentException("Last name must be less than or equal to 50 characters long.");
             }
             return _repo.FindStudentByLastname(lastName);
         }
@@ -64,8 +65,8 @@ namespace Services {
             if (string.IsNullOrEmpty(firstName)) {
                 throw new ArgumentException("First name cannot be null or empty.");
             }
-            if (firstName.Length < 2 || firstName.Length > 50) {
-                throw new ArgumentException("First name must be between 2 and 50 characters long.");
+            if (firstName.Length > 50) {
+                throw new ArgumentException("First name must be less than or equal to 50 characters long.");
             }
         }
 

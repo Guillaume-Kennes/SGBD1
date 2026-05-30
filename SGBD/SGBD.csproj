@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\InterfacesDLL\InterfacesDLL.csproj" />
     <ProjectReference Include="..\ModelsDLL\ModelsDLL.csproj" />
+    <ProjectReference Include="..\RepoDLL\RepoDLL.csproj" />
     <ProjectReference Include="..\ServicesDLL\ServicesDLL.csproj" />
   </ItemGroup>
 

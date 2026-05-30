@@ -18,55 +18,71 @@ namespace SGBD {
             var studentsService = serviceProvider.GetRequiredService<IStudentsService>();
 
 
-            Console.WriteLine("Select an operation : ");
-            Console.WriteLine("1 - Add");
-            Console.WriteLine("2 - Delete");
-            Console.WriteLine("3 - Update");
-            Console.WriteLine("4 - Get All");
-            Console.WriteLine("5 - Find by Last Name");
-            Console.Write("Enter your choice: ");
-            var input = Console.ReadLine();
-            int choice;
-            if (!int.TryParse(input, out choice)) {
-                logger.LogError("Invalid input. Please enter a valid choice.");
-                return;
-            }
-
-            try {
-
-                switch(choice) {
-                    case 1: 
-                        Add(studentsService);
-                        break;
-                    case 2: 
-                        Delete(studentsService);
-                        break;
-                    case 3:
-                        Update(studentsService);
-                        break;
-                    case 4:
-                        GetAll(studentsService);
-                        break;
-                    case 5:
-                        FindByLastName(studentsService);
-                        break;
-
-                    default: 
-                        logger.LogWarning("Invalid choice. Please select 1 for Add, 2 for Delete, or 3 for Update. 4 for Get All");
-                        break;
+            while (true) {
+                Console.WriteLine("Select an operation : ");
+                Console.WriteLine("0 - Exit");
+                Console.WriteLine("1 - Add");
+                Console.WriteLine("2 - Delete");
+                Console.WriteLine("3 - Update");
+                Console.WriteLine("4 - Get All");
+                Console.WriteLine("5 - Find by Last Name");
+                Console.Write("Enter your choice: ");
+                var input = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(input)) {
+                    logger.LogWarning("No input provided.");
+                    continue;
                 }
-            } catch(Exception e) {
-                logger.LogError(e, "An error as occurred while processing students.");
+
+                if (input.Trim().Equals("0", System.StringComparison.OrdinalIgnoreCase)
+                    || input.Trim().Equals("q", System.StringComparison.OrdinalIgnoreCase)) {
+                    logger.LogInformation("Exiting application.");
+                    break;
+                }
+
+                if (!int.TryParse(input, out int choice)) {
+                    logger.LogError("Invalid input. Please enter a valid choice.");
+                    continue;
+                }
+
+                try {
+                    switch (choice) {
+                        case 1:
+                            Add(studentsService);
+                            break;
+                        case 2:
+                            Delete(studentsService);
+                            break;
+                        case 3:
+                            Update(studentsService);
+                            break;
+                        case 4:
+                            GetAll(studentsService);
+                            break;
+                        case 5:
+                            FindByLastName(studentsService);
+                            break;
+                        default:
+                            logger.LogWarning("Invalid choice. Please select a valid option.");
+                            break;
+                    }
+                } catch (Exception e) {
+                    logger.LogError(e, "An error has occurred while processing students.");
+                }
+
+                Console.WriteLine();
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey(true);
+                Console.Clear();
             }
         }
 
 
         private static void Add(IStudentsService studentsService) {
             Student newStudent = new Student {
-                Matricule = "HE01",
-                FirstName = "John",
-                LastName = "D",
-                Email = "johnd@gmail.com"
+                Matricule = "HE05",
+                FirstName = "Johndd",
+                LastName = "Ddd",
+                Email = "jo@gmail.com"
             };
 
             studentsService.Add(newStudent);
@@ -91,10 +107,10 @@ namespace SGBD {
             if (int.TryParse(input, out int id) && id != 0) {
                 Student updatedStudent = new Student {
                     Id = id,
-                    Matricule = "HE01",
-                    FirstName = "John",
+                    Matricule = "HE05",
+                    FirstName = "HH",
                     LastName = "Dafiduck",
-                    Email = "johndoe@gmail.com"
+                    Email = "HD@gmail.com"
                 };
 
                 studentsService.Update(updatedStudent);
@@ -135,7 +151,7 @@ namespace SGBD {
         private static ServiceProvider CreateService() {
             var services = new ServiceCollection();
             services.AddLogging(configure=> configure.AddConsole())
-                .AddSingleton<IStudentRepo, StudentRepo>()
+                .AddSingleton<IStudentRepo, StudentDapperRepo>()
                 .AddSingleton<IStudentsService, StudentsService>();
 
             return services.BuildServiceProvider();
