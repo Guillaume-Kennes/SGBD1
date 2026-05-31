@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models {
+namespace ModelsDLL.Models {
     public class Student {
         public int Id { get; set; }
         public string Matricule { get; set; }

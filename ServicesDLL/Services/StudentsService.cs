@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
-using Interfaces;
-using Models;
-using Repositories;
+using InterfacesDLL.Interfaces;
+using ModelsDLL.Models;
+using RepoDLL.Repositories;
 
-namespace Services {
+namespace ServicesDLL.Services {
     public class StudentsService : IStudentsService {
 
         private IStudentRepo _repo;
