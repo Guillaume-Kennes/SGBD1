@@ -1,9 +1,9 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
-using Repositories;
+using RepoDLL.Repositories;
 using System.Data;
 
-namespace Shared {
+namespace Tests.Shared {
     public class DBSetup : BaseRepo {
 
         private readonly string _connectionString;

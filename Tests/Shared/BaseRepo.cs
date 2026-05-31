@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 
 
-namespace Repositories {
+namespace RepoDLL.Repositories {
     public class BaseRepo {
 
         private Assembly _assembly = System.Reflection.Assembly.GetExecutingAssembly();

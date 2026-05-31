@@ -1,7 +1,7 @@
 ﻿using Moq;
-using Services;
-using Interfaces;
-using Models;
+using ServicesDLL.Services;
+using InterfacesDLL.Interfaces;
+using ModelsDLL.Models;
 using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Tests.Services {

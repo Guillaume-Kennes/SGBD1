@@ -1,11 +1,11 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using Services;
-using Models;
+using ServicesDLL.Services;
+using ModelsDLL.Models;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
-using Interfaces;
-using Repositories; //ca ne peur pas faire reference a Repositories, il faut ajouter le projet Repositories en reference du projet SGBD
+using InterfacesDLL.Interfaces;
+using RepoDLL.Repositories; //ca ne peur pas faire reference a Repositories, il faut ajouter le projet Repositories en reference du projet SGBD
 
 
 namespace SGBD {

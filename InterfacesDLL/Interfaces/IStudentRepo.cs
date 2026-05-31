@@ -1,6 +1,6 @@
-﻿using Models;
+﻿using ModelsDLL.Models;
 
-namespace Interfaces {
+namespace InterfacesDLL.Interfaces {
     public interface IStudentRepo {
         List<Student> GetAll();
 

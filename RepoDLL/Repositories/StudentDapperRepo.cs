@@ -1,11 +1,11 @@
 ﻿using Dapper;
-using Interfaces;
+using InterfacesDLL.Interfaces;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Logging;
-using Models;
+using ModelsDLL.Models;
 using System.Data;
 
-namespace Repositories {
+namespace RepoDLL.Repositories {
     public class StudentDapperRepo : BaseRepo, IStudentRepo {
 
 

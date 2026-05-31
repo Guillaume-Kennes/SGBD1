@@ -1,16 +1,16 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Logging;
-using Models;
-using Interfaces;
+using ModelsDLL.Models;
+using InterfacesDLL.Interfaces;
 
-namespace Repositories {
-    public class StudentRepo : BaseRepo, IStudentRepo {
+namespace RepoDLL.Repositories {
+    public class StudentADONETRepo : BaseRepo, IStudentRepo {
 
 
         private readonly string connectionString = @"Server=MSI\MSSQL; DataBase=SGBD; User ID=sa; Password=GuillaumeK15_; TrustServerCertificate=True;";
-        private readonly ILogger<StudentRepo> _logger;
+        private readonly ILogger<StudentADONETRepo> _logger;
 
-        public StudentRepo(ILogger<StudentRepo> logger) {
+        public StudentADONETRepo(ILogger<StudentADONETRepo> logger) {
             _logger = logger;
         }
 
