@@ -20,15 +20,21 @@ namespace Tests.Shared {
         }
 
         public async Task InitStudentsDataAsync() {
+            await ResetDataAsync();
             await RunScript("InitStudentsData.sql");
         }
 
         public async Task InitKotDataAsync() {
+            await ResetDataAsync();
             await RunScript("InitKotData.sql");
         }
 
 
 
+
+        public async Task ResetDataAsync() {
+            await RunScript("ResetData.sql");
+        }
         private async Task RunScript(string filename) {
             string sql = await GetFileFromAssemblyAsync(filename);
             using (IDbConnection connection = new SqlConnection(_connectionString)) {

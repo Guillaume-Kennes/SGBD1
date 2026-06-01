@@ -2,6 +2,8 @@
 using Testcontainers.MsSql;
 
 namespace Tests.Shared {
+
+    //[Collection("IntegrationDB")]
     public class DatabaseFixture : IAsyncLifetime {
 
         private MsSqlContainer _container;
@@ -34,5 +36,11 @@ namespace Tests.Shared {
             }
         }
 
+    }
+
+    [CollectionDefinition("IntegrationDB", DisableParallelization = true)]
+    public class IntegrationDBCollection : ICollectionFixture<DatabaseFixture> {
+        //No code needed here, this class is just to define the collection and its fixture
+        // links "IntegrationDB" -> DatabaseFixture (no code)
     }
 }

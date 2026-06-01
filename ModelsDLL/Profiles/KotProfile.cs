@@ -12,7 +12,8 @@ namespace ModelsDLL.Profiles {
             CreateMap<KotStudentDTO, Kot>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.KOT_ID))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.KOT_NAME))
-                .ForMember(dest => dest.Student, opt => opt.MapFrom(src => src));
+                .ForMember(dest => dest.Student, opt => opt.MapFrom(src 
+                => string.IsNullOrWhiteSpace(src.ETU_MATRICULE) ? null : src));
             // l un ou l autre, ca fait la meme chose
             //CreateMap<KotStudentDTO, Kot>()
             //    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.KOT_ID))

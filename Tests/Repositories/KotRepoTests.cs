@@ -2,7 +2,9 @@
 using Tests.Shared;
 
 namespace Tests.RepositoriesTests {
-    public class KotRepoTests : IClassFixture<DatabaseFixture> {
+
+    [Collection("IntegrationDB")]
+    public class KotRepoTests {
 
         private readonly DatabaseFixture _fixture;
         private string _connectionString;
@@ -26,6 +28,23 @@ namespace Tests.RepositoriesTests {
             Assert.NotEmpty(kots);
             Assert.Equal(2, kots.Count);
 
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)] //this one doesn t exist, should be null
+        public async Task DeleteTest(int id) {
+            await dBSetup.InitKotDataAsync();
+            var logger = NullLogger<RepoDLL.Repositories.KotRepo>.Instance;
+            var repo = new RepoDLL.Repositories.KotRepo(logger, _connectionString);
+
+            repo.Delete(id);
+
+            var kots = repo.GetAll();
+            var kot = kots.FirstOrDefault(k => k.KOT_ID == id);
+
+            Assert.Null(kot);
         }
 
     }
