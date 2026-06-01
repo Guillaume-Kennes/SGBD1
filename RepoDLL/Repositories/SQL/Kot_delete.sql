@@ -1,0 +1,1 @@
+﻿delete from Kot where KOT_ID = @Id

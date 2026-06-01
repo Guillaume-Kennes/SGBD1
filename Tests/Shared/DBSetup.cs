@@ -23,6 +23,12 @@ namespace Tests.Shared {
             await RunScript("InitStudentsData.sql");
         }
 
+        public async Task InitKotDataAsync() {
+            await RunScript("InitKotData.sql");
+        }
+
+
+
         private async Task RunScript(string filename) {
             string sql = await GetFileFromAssemblyAsync(filename);
             using (IDbConnection connection = new SqlConnection(_connectionString)) {

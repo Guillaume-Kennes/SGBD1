@@ -2,13 +2,13 @@
 using Tests.Shared;
 
 namespace Tests.RepositoriesTests {
-    public class StudentDapperRepoTests : IClassFixture<DatabaseFixture> {
+    public class StudentRepoTests : IClassFixture<DatabaseFixture> {
 
         private readonly DatabaseFixture _fixture;
         private string _connectionString;
         DBSetup dBSetup => _fixture.DbSetup;
 
-        public StudentDapperRepoTests(DatabaseFixture databaseFixture) {
+        public StudentRepoTests(DatabaseFixture databaseFixture) {
             _fixture = databaseFixture;
             _connectionString = _fixture.ConnectionString;
         }
@@ -17,8 +17,8 @@ namespace Tests.RepositoriesTests {
         public async Task GetAllTest() {
             await dBSetup.InitStudentsDataAsync();
 
-            var logger = NullLogger<RepoDLL.Repositories.StudentDapperRepo>.Instance;
-            var repo = new RepoDLL.Repositories.StudentDapperRepo(logger, _connectionString);
+            var logger = NullLogger<RepoDLL.Repositories.StudentRepo>.Instance;
+            var repo = new RepoDLL.Repositories.StudentRepo(logger, _connectionString);
 
             var students = repo.GetAll();
 
@@ -35,8 +35,8 @@ namespace Tests.RepositoriesTests {
 
             await dBSetup.InitStudentsDataAsync();
 
-            var logger = NullLogger<RepoDLL.Repositories.StudentDapperRepo>.Instance;
-            var repo = new RepoDLL.Repositories.StudentDapperRepo(logger, _connectionString);
+            var logger = NullLogger<RepoDLL.Repositories.StudentRepo>.Instance;
+            var repo = new RepoDLL.Repositories.StudentRepo(logger, _connectionString);
 
             var students = repo.FindStudentByLastname(lastName);
 

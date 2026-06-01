@@ -1,1 +1,0 @@
-﻿delete from Etudiant where ETU_ID = @Id
