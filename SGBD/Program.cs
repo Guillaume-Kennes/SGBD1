@@ -89,6 +89,7 @@ namespace SGBD {
         }
 
 
+        // STUDENT --------------------------------------------------------------
         private static void Add(IStudentsService studentsService) {
             Student newStudent = new Student {
                 Matricule = "HE05",
@@ -160,6 +161,7 @@ namespace SGBD {
             }
         }
 
+        // KOT --------------------------------------------------------------
         private static void DeleteKot(IKotServices kotService) {
             Console.Write("Enter the ID of the kot to delete : ");
             var input = Console.ReadLine();

@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="SQL\ResetData.sql" />
     <EmbeddedResource Include="SQL\InitKotData.sql" />
     <EmbeddedResource Include="SQL\InitStudentsData.sql" />
     <EmbeddedResource Include="SQL\CreateTables.sql" />
