@@ -2,13 +2,13 @@
 using Tests.Shared;
 
 namespace Tests.RepositoriesTests {
-    public class StudentDapperRepoTests : IClassFixture<DatabaseFixture> {
+    public class StudentRepoTests : IClassFixture<DatabaseFixture> {
 
         private readonly DatabaseFixture _fixture;
         private string _connectionString;
         DBSetup dBSetup => _fixture.DbSetup;
 
-        public StudentDapperRepoTests(DatabaseFixture databaseFixture) {
+        public StudentRepoTests(DatabaseFixture databaseFixture) {
             _fixture = databaseFixture;
             _connectionString = _fixture.ConnectionString;
         }
