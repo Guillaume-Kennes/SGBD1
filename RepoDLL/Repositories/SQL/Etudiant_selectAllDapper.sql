@@ -1,1 +1,0 @@
-﻿select Etu_Id as Id, Etu_Nom as LastName, Etu_Prenom as FirstName, Etu_Matricule as Matricule, Etu_Email as Email from Etudiant;

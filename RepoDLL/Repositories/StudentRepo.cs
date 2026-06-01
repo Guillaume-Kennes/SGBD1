@@ -6,24 +6,24 @@ using ModelsDLL.Models;
 using System.Data;
 
 namespace RepoDLL.Repositories {
-    public class StudentDapperRepo : BaseRepo, IStudentRepo {
+    public class StudentRepo : BaseRepo, IStudentRepo {
 
 
         private readonly string _connectionString = @"Server=MSI\MSSQL; DataBase=SGBD; User ID=sa; Password=GuillaumeK15_; TrustServerCertificate=True;";
-        private readonly ILogger<StudentDapperRepo> _logger;
+        private readonly ILogger<StudentRepo> _logger;
 
-        public StudentDapperRepo(ILogger<StudentDapperRepo> logger) {
+        public StudentRepo(ILogger<StudentRepo> logger) {
             _logger = logger;
         }
 
-        public StudentDapperRepo(ILogger<StudentDapperRepo> logger, string connectionString) {
+        public StudentRepo(ILogger<StudentRepo> logger, string connectionString) {
             _logger = logger;
             _connectionString = connectionString;
         }
 
 
         public List<Student> FindStudentByLastname(string lastName) {
-            string querry = GetFileFromAssembly("Etudiant_findByLastnameDapper.sql"); // ensure this SQL aliases columns to Student properties (Id, LastName, FirstName, Matricule, Email)
+            string querry = GetFileFromAssembly("Etudiant_findByLastname.sql"); // ensure this SQL aliases columns to Student properties (Id, LastName, FirstName, Matricule, Email)
 
             try {
                 using (IDbConnection connection = new SqlConnection(_connectionString)) {
@@ -39,7 +39,7 @@ namespace RepoDLL.Repositories {
 
         public List<Student> GetAll() {
             List<Student> students = new List<Student>();
-            string querry = GetFileFromAssembly("Etudiant_selectAllDapper.sql");
+            string querry = GetFileFromAssembly("Etudiant_selectAll.sql");
 
             try {
                 using (IDbConnection connection = new SqlConnection(_connectionString)) {
@@ -54,7 +54,7 @@ namespace RepoDLL.Repositories {
 
 
         public void Add(Student student) {
-            string querry = GetFileFromAssembly("Etudiant_insertDapper.sql");
+            string querry = GetFileFromAssembly("Etudiant_insert.sql");
             try {
                 using (IDbConnection connection = new SqlConnection(_connectionString)) {
                     int rowsAffected = connection.Execute(querry, student);
@@ -71,7 +71,7 @@ namespace RepoDLL.Repositories {
         }
 
         public void Delete(int id) {
-            string querry = GetFileFromAssembly("Etudiant_deleteDapper.sql");
+            string querry = GetFileFromAssembly("Etudiant_delete.sql");
             try {
                 using (IDbConnection connection = new SqlConnection(_connectionString)) {
                     connection.Execute(querry, new { Id = id });
@@ -84,7 +84,7 @@ namespace RepoDLL.Repositories {
 
 
         public void Update(Student student) {
-            string querry = GetFileFromAssembly("Etudiant_updateDapper.sql");
+            string querry = GetFileFromAssembly("Etudiant_update.sql");
             try {
                 using (IDbConnection connection = new SqlConnection(_connectionString)) {
                     connection.Execute(querry, student);

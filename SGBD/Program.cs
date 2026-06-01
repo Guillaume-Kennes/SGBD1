@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using InterfacesDLL.Interfaces;
 using RepoDLL.Repositories; //ca ne peur pas faire reference a Repositories, il faut ajouter le projet Repositories en reference du projet SGBD
-
+using ModelsDLL.Profiles;
 
 namespace SGBD {
     public class Program {
@@ -16,16 +16,21 @@ namespace SGBD {
 
             var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
             var studentsService = serviceProvider.GetRequiredService<IStudentsService>();
+            var kotService = serviceProvider.GetRequiredService<IKotServices>();
 
 
             while (true) {
                 Console.WriteLine("Select an operation : ");
                 Console.WriteLine("0 - Exit");
+                Console.WriteLine("STUDENTS :");
                 Console.WriteLine("1 - Add");
                 Console.WriteLine("2 - Delete");
                 Console.WriteLine("3 - Update");
                 Console.WriteLine("4 - Get All");
                 Console.WriteLine("5 - Find by Last Name");
+                Console.WriteLine("KOTS :");
+                Console.WriteLine("6 - Delete");
+                Console.WriteLine("7 - Get All");
                 Console.Write("Enter your choice: ");
                 var input = Console.ReadLine();
                 if (string.IsNullOrWhiteSpace(input)) {
@@ -61,6 +66,13 @@ namespace SGBD {
                         case 5:
                             FindByLastName(studentsService);
                             break;
+                        case 6:
+                            DeleteKot(kotService);
+                            break;
+                        case 7:
+                            GetAllKots(kotService);
+                            break;
+
                         default:
                             logger.LogWarning("Invalid choice. Please select a valid option.");
                             break;
@@ -148,11 +160,35 @@ namespace SGBD {
             }
         }
 
+        private static void DeleteKot(IKotServices kotService) {
+            Console.Write("Enter the ID of the kot to delete : ");
+            var input = Console.ReadLine();
+            if (int.TryParse(input, out int id) && id != 0) {
+                kotService.Delete(id);
+                Console.WriteLine($"Kot with ID {id} has been deleted.");
+            } else {
+                Console.WriteLine("Invalid ID. Please enter a valid kot ID.");
+                return;
+            }
+        }
+
+        private static void GetAllKots(IKotServices kotService) {
+            var kots = kotService.GetAll();
+            foreach (var kot in kots) {
+                Console.WriteLine($"ID: {kot.Id}, Name: {kot.Name}, Student: {kot.Student?.Matricule}");
+            }
+        }
+
         private static ServiceProvider CreateService() {
             var services = new ServiceCollection();
+
+            services.AddAutoMapper(cfg => {}, typeof(KotProfile));
+
             services.AddLogging(configure=> configure.AddConsole())
-                .AddSingleton<IStudentRepo, StudentDapperRepo>()
-                .AddSingleton<IStudentsService, StudentsService>();
+                .AddSingleton<IStudentRepo, StudentRepo>()
+                .AddSingleton<IStudentsService, StudentsService>()
+                .AddSingleton<IKotRepo, KotRepo>()
+                .AddSingleton<IKotServices, KotServices>();
 
             return services.BuildServiceProvider();
         }

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ModelsDLL.Models;
 
 namespace ModelsDLL.Models {
     public class Student {
@@ -11,6 +9,8 @@ namespace ModelsDLL.Models {
         public string? FirstName { get; set; }
         public string LastName { get; set; }
         public string? Email { get; set; }
-        
+
+        public ICollection<Kot> Kots { get; set; } // Un étudiant peut avoir plusieurs kots
+
     }
 }
